@@ -1,3 +1,11 @@
 .DS_Store
 /HTML/lib/touch/sencha-touch.js
 /HTML/lib/touch/resources/css/sencha-touch.css
+/en.lproj/
+/HelloNK-Info.plist
+/HelloNK-Prefix.pch
+/HelloNKAppDelegate.h
+/HelloNKAppDelegate.m
+/iPad/
+/iPhone/
+/main.m
