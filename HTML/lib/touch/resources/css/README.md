@@ -1,0 +1,1 @@
+Add sencha-touch.css from your Sencha Touch SDK to this lib/resources/css folder.

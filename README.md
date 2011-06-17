@@ -1,0 +1,1 @@
+This is the web-app part of the Sencha Touch NimbleKit tutorial. Place this HTML directory inside your NimbleKit-based Xcode project, as described in the article itself.

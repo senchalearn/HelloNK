@@ -1,0 +1,1 @@
+Add sencha-touch.js from your Sencha Touch SDK to this lib folder.
