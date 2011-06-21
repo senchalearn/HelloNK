@@ -10,9 +10,22 @@ new Ext.Application({
                 ui:'light'
             },
             items: [{
-                title: 'One'
-            }, {
-                title: 'Two'
+                title: 'Info',
+                html:
+                    '<table>' +
+                        '<tr><th>Device</th><td>' +
+                            NKGetDeviceType() +
+                        '</td></tr>' +
+                        '<tr><th>ID</th><td>' +
+                            NKGetUniqueIdentifier() +
+                        '</td></tr>' +
+                        '<tr><th>Cellular</th><td>' +
+                            NKIsInternetAvailableViaCellularNetwork() +
+                        '</td></tr>' +
+                        '<tr><th>WiFi</th><td>' +
+                            NKIsInternetAvailableViaWifi() +
+                        '</td></tr>' +
+                    '</table>'
             }]
         });
     }
