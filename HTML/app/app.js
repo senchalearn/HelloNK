@@ -14,45 +14,48 @@ new Ext.Application({
                 title: 'Alerts',
                 dockedItems: [timeToolbar],
                 layout: {type: 'vbox', align:'center'},
-                items: [
-                    {xtype: 'button', text: 'Alert',
-                        listeners: {tap: function() {
-                            alert('A regular JavaScript alert');
-                        }}
-                    },
-                    {xtype: 'button', text: 'Confirm',
-                        listeners: {tap: function() {
-                            confirm('A regular JavaScript confirmation');
-                        }}
-                    },
-                    {xtype: 'button', text: 'NKAlert', ui: 'confirm',
-                        listeners: {tap: function() {
-                            NKAlert('This is a...', '...NimbleKit alert');
-                        }}
-                    },
-                    {xtype: 'button', text: 'NKConfirm', ui: 'confirm',
-                        listeners: {tap: function() {
-                            NKConfirm(
-                                'This is a...', '...NimbleKit confirmation',
-                                'It rocks!', 'I love it!',
-                                'confirmCallback'
-                            );
-                        }}
-                    },
-                    {xtype: 'button', text: 'NKAlertSheet', ui: 'confirm',
-                        listeners: {tap: function() {
-                            var sheet = new NKAlertSheet();
-                            sheet.init('confirmCallback');
-                            sheet.setTitle("Like this?");
-                            sheet.addButtonWithTitle("It rocks!");
-                            sheet.addButtonWithTitle("I love it!");
-                            sheet.addButtonWithTitle("Cancel");
-                            sheet.setStyle("blacktranslucent");
-                            sheet.setRedButtonIndex(2);
-                            sheet.show()
-                        }}
-                    }
-                ]
+                defaults: {xtype: 'button'},
+                items: [{
+                    text: 'Alert',
+                    listeners: {tap: function() {
+                        alert('A regular JavaScript alert');
+                    }}
+                }, {
+                    text: 'Confirm',
+                    listeners: {tap: function() {
+                        confirm('A regular JavaScript confirmation');
+                    }}
+                }, {
+                    text: 'NKAlert',
+                    ui: 'confirm',
+                    listeners: {tap: function() {
+                        NKAlert('This is a...', '...NimbleKit alert');
+                    }}
+                }, {
+                    text: 'NKConfirm',
+                    ui: 'confirm',
+                    listeners: {tap: function() {
+                        NKConfirm(
+                            'This is a...', '...NimbleKit confirmation',
+                            'It rocks!', 'I love it!',
+                            'confirmCallback'
+                        );
+                    }}
+                }, {
+                    text: 'NKAlertSheet',
+                    ui: 'confirm',
+                    listeners: {tap: function() {
+                        var sheet = new NKAlertSheet();
+                        sheet.init('confirmCallback');
+                        sheet.setTitle("Like this?");
+                        sheet.addButtonWithTitle("It rocks!");
+                        sheet.addButtonWithTitle("I love it!");
+                        sheet.addButtonWithTitle("Cancel");
+                        sheet.setStyle("blacktranslucent");
+                        sheet.setRedButtonIndex(2);
+                        sheet.show();
+                    }}
+                }]
             }, {
                 title: 'Info',
                 html:
