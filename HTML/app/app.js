@@ -1,7 +1,7 @@
 new Ext.Application({
     launch: function () {
         var timeToolbar = new Ext.Toolbar();
-        new Ext.TabPanel({
+        var tabPanel = new Ext.TabPanel({
             fullscreen: true,
             dockedItems: [{
                 xtype: 'toolbar',
