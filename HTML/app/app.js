@@ -1,6 +1,6 @@
 new Ext.Application({
     launch: function () {
-        new Ext.TabPanel({
+        var tabPanel = new Ext.TabPanel({
             fullscreen: true,
             dockedItems: [{
                 xtype: 'toolbar',
