@@ -1,11 +1,33 @@
 new Ext.Application({
     launch: function () {
         var timeToolbar = new Ext.Toolbar();
-        new Ext.TabPanel({
+
+        var navigation = new NKNavigationController();
+        navigation.addNavigationItem('Home', 'switchTab', 10);
+        navigation.hide();
+        navigation.showing = false;
+        navigation.toggle = function() {
+            if (navigation.showing) {
+                navigation.hide();
+                navigation.showing = false;
+            } else {
+                navigation.show();
+                navigation.showing = true;
+            }
+        }
+
+        
+        var tabPanel = new Ext.TabPanel({
             fullscreen: true,
             dockedItems: [{
                 xtype: 'toolbar',
-                title: 'HelloNK'
+                title: 'HelloNK',
+                items: [{
+                    text:'Menu',
+                    listeners: {tap: function () {
+                        navigation.toggle();
+                    }}
+                }]
             }],
             tabBar: {
                 ui:'light'
@@ -81,5 +103,10 @@ new Ext.Application({
         }
         setInterval(function () {timeToolbar.setTitle(new Date().toLocaleTimeString());}, 1000);
         
+        window.switchTab = function () {
+            var currentTab = tabPanel.getActiveItem();
+            tabPanel.setActiveItem((currentTab.title=='Alerts')?1:0);
+            navigation.toggle();
+        }
     }
 });
