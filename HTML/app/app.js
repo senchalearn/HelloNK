@@ -21,6 +21,27 @@ new Ext.Application({
         
         var radioToolbar = new Ext.Toolbar({title:'Soma FM'});
         
+        var photoPanel = new Ext.Panel({margin:10});
+        var emailButton = new Ext.Button({
+            text: 'Email photo',
+            disabled: true,
+            listeners: {tap: function() {
+                var composer = new NKMailComposer();
+                composer.setRecipient("my.friend@example.com");
+                composer.setSubject("A Sencha Touch photo");
+                composer.setBody("It's amazing what you can do with web apps these days");
+                composer.addImage(photoPanel.image);
+                composer.show();
+            }}
+        })
+        var takeButton = new Ext.Button({
+            text: 'Take Photo',
+            ui: 'confirm',
+            listeners: {tap: function() {
+                NKPickImageObject('takenPhoto', 'camera');
+            }}
+        });
+        
         var tabPanel = new Ext.TabPanel({
             fullscreen: true,
             dockedItems: [{
@@ -37,6 +58,10 @@ new Ext.Application({
                 ui:'light'
             },
             items: [{
+                title: 'Camera',
+                layout: {type: 'vbox', align:'center'},
+                items: [takeButton, emailButton, photoPanel]
+            }, {
                 title: 'Radio',
                 layout: {type: 'vbox', align:'center'},
                 defaults: {xtype: 'button'},
@@ -145,6 +170,19 @@ new Ext.Application({
             var currentTab = tabPanel.getActiveItem();
             tabPanel.setActiveItem((currentTab.title=='Alerts')?1:0);
             navigation.toggle();
+        }
+        
+        window.takenPhoto = function(image) {
+            var dimensions = image.getSize().split(',');
+            var width = 200;
+            var height = width * dimensions[1] / dimensions[0];
+            var base64 = image.getBase64(0.6);
+            photoPanel.update(
+                '<img src="data:image/jpg;base64,' + base64 + '" ' +
+                ' width="' + width + '" height="' + height + '" />'
+            );
+            photoPanel.image = image;
+            emailButton.setDisabled(false);
         }
     }
 });
