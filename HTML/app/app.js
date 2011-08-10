@@ -2,25 +2,11 @@ new Ext.Application({
     launch: function () {
         var timeToolbar = new Ext.Toolbar();
 
-        var navigation = new NKNavigationController();
-        navigation.addNavigationItem('Home', 'switchTab', 10);
-        navigation.hide();
-        navigation.showing = false;
-        navigation.toggle = function() {
-            if (navigation.showing) {
-                navigation.hide();
-                navigation.showing = false;
-            } else {
-                navigation.show();
-                navigation.showing = true;
-            }
-        }
-
         var radio = new NKInternetPlayer();
         radio.forceDecoderFormat("aac");
-        
+
         var radioToolbar = new Ext.Toolbar({title:'Soma FM'});
-        
+
         var photoPanel = new Ext.Panel({margin:10});
         var emailButton = new Ext.Button({
             text: 'Email photo',
@@ -41,18 +27,12 @@ new Ext.Application({
                 NKPickImageObject('takenPhoto', 'camera');
             }}
         });
-        
+
         var tabPanel = new Ext.TabPanel({
             fullscreen: true,
             dockedItems: [{
                 xtype: 'toolbar',
-                title: 'HelloNK',
-                items: [{
-                    text:'Menu',
-                    listeners: {tap: function () {
-                        navigation.toggle();
-                    }}
-                }]
+                title: 'HelloNK'
             }],
             tabBar: {
                 ui:'light'
@@ -153,7 +133,7 @@ new Ext.Application({
                     '</table>'
             }]
         });
-        
+
         window.confirmCallback = function (index) {
             NKAlert('You clicked...', '...button #' + index);
         }
@@ -165,12 +145,6 @@ new Ext.Application({
                 radioToolbar.setTitle(meta);
             }
         }, 5000);
-        
-        window.switchTab = function () {
-            var currentTab = tabPanel.getActiveItem();
-            tabPanel.setActiveItem((currentTab.title=='Alerts')?1:0);
-            navigation.toggle();
-        }
         
         window.takenPhoto = function(image) {
             var dimensions = image.getSize().split(',');
